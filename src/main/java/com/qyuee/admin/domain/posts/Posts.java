@@ -38,8 +38,9 @@ public class Posts {
     }
 
     // 비즈니스
-    public void update(String title, String content) {
+    public void update(String title, String content, String author) {
         this.title = title;
         this.content = content;
+        this.author = author;
     }
 }

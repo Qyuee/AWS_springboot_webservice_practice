@@ -33,7 +33,7 @@ public class PostsService {
          즉, 이 update 트랜잭션이 끝나기 전에 데이터를 조회하면 update 이전의 상태가 보일 것 -> 아주 당연한 이야기긴 함
          이 개념을 더티 체킹이라고 함 (https://jojoldu.tistory.com/415)
          */
-        posts.update(requestDto.getTitle(), requestDto.getContent());
+        posts.update(requestDto.getTitle(), requestDto.getContent(), requestDto.getAuthor());
 
         return id;
     }
