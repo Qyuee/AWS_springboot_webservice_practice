@@ -7,11 +7,11 @@ _(위 해결방안으로 부족하면 구글링을 하는수 밖에 없음..)_
 
 ---
 
-####단축키 Ttp
+#### 단축키 Ttp
 - 테스트 class 생성하기
     - 생성하려는 class에서 Alt+Insert > test... 선택
 - 세미콜론 자동완성: Alt+Shift+Enter
-- Git Push: Ctrl+Shift+K -> Alt+Enter
+- Git Push: Ctrl+Shift+K -> Ctrl+Enter
 
 ----
 
