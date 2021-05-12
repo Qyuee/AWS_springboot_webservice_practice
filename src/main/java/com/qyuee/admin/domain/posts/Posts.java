@@ -1,5 +1,6 @@
 package com.qyuee.admin.domain.posts;
 
+import com.qyuee.admin.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 // 테이블과 링크될 클래스임을 나타낸다.
 // 기본적으로 카멜케이스 이름을 테이블 이름을 매칭한다. ex) Posts -> posts, MemberListTable -> member_list_table
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
     @Id // PK를 의미
     // PK의 생성 규칙, GenerationType.IDENTITY으로해야 auto_increment가 된다.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
