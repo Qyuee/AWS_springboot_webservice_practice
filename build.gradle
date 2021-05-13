@@ -29,6 +29,10 @@ dependencies {
 	// 인메모리 관계형 데이터베이스
 	// 애플리케이션을 재실행하면 초기화됨, 테스트용도
 	implementation('com.h2database:h2')
+
+	// Mustache
+	implementation('org.springframework.boot:spring-boot-starter-mustache')
+
 }
 
 test {
