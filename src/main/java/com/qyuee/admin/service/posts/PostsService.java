@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 // 서비스는 트랜잭션, 도메인 간 순서보장만 한다.
 @Service
 @RequiredArgsConstructor // final이 선언된 모든 필드를 인자로하는 생성자를 생성해줌
@@ -33,7 +36,7 @@ public class PostsService {
          즉, 이 update 트랜잭션이 끝나기 전에 데이터를 조회하면 update 이전의 상태가 보일 것 -> 아주 당연한 이야기긴 함
          이 개념을 더티 체킹이라고 함 (https://jojoldu.tistory.com/415)
          */
-        posts.update(requestDto.getTitle(), requestDto.getContent(), requestDto.getAuthor());
+        posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return id;
     }
@@ -41,5 +44,19 @@ public class PostsService {
     public PostsResponseDto findById (Long id) {
         Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsResponseDto> findAllDesc() {
+        // Posts의 Stream을 steram의 map을 통해서 PostsListResponseDto로 변환하고 List로 반환
+        return postsRepository.findAllDesc().stream()
+                .map(PostsResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+        postsRepository.delete(posts);
     }
 }
